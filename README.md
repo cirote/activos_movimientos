@@ -1,25 +1,4 @@
-## Crud de ejemplo
+## Activos/Movimientos
 
-Proyecto para la prueba de un CRUD.
+Parte del proyecto de Activos.
 
-### Instalacion
-
-Via [Composer](http://getcomposer.org/). 
-
-``` bash
-$ composer require cirote/crud
-```
-
-Realizar las migraciones
-
-``` bash
-$ php artisan migrate
-```
-
-### Utilizacion
-
-Via web
-
-``` bash
-https://yoursite.com/crud
-```

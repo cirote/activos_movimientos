@@ -1,6 +1,6 @@
 {
-    "name": "cirote/crud",
-    "description": "Modelo de CRUD",
+    "name": "cirote/activos_movimientos",
+    "description": "Sistema de activos",
     "type": "library",
     "license": "",
     "authors": [
@@ -11,11 +11,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "Cirote\\Crud\\": "src/"
+            "Cirote\\Movimientos\\": "src/"
         }
     },
     "require": {
-
+        "cirote/adminlte": "@dev",
+        "spatie/laravel-collection-macros": "*"
     },
     "require-dev": {
 
@@ -23,7 +24,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Cirote\\Crud\\ServiceProvider\\CrudServiceProvider"
+                "Cirote\\Movimientos\\ServiceProvider\\ServiceProvider"
             ],
             "aliases": {
 
