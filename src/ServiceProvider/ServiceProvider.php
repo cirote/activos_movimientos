@@ -17,7 +17,7 @@ class ServiceProvider extends BaseServiceProvider
 
 	public function boot()
 	{
-		$this->loadTranslationsFrom(__DIR__ . '/../Translations', 'activos');
+		$this->loadTranslationsFrom(__DIR__ . '/../Translations', 'movimientos');
 	}
 
 	private function register_migrations()
@@ -32,7 +32,7 @@ class ServiceProvider extends BaseServiceProvider
 
 	private function register_views()
 	{
-		$this->loadViewsFrom(__DIR__ . '/../Views', 'activos');
+		$this->loadViewsFrom(__DIR__ . '/../Views', 'movimientos');
 	}
 
 }

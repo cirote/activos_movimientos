@@ -11,4 +11,13 @@ class Movimiento extends Model
 
     protected $guarded = [];
 
+    protected $dates = [
+        'fecha_operacion',
+        'fecha_liquidacion'
+    ];
+
+    public function getRemanenteAttribute()
+    {
+    	return $this->cantidad - $this->cantidad_imputada;
+    }
 }

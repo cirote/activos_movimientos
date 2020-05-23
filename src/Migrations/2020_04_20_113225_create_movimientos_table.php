@@ -25,6 +25,7 @@ class CreateMovimientosTable extends Migration
             $table->string('observaciones');
 
             $table->double('cantidad')->nullable();
+            $table->double('cantidad_imputada')->default(0);
 
             $table->integer('moneda_original_id')->unsigned()->nullable();
             $table->foreign('moneda_original_id')->references('id')->on(Config::PREFIJO . Config::ACTIVOS);
@@ -35,6 +36,7 @@ class CreateMovimientosTable extends Migration
             $table->decimal('iva_en_moneda_original', 10, 2)->nullable();
             $table->decimal('otros_impuestos_en_moneda_original', 10, 2)->nullable();
             $table->decimal('saldo_en_moneda_original', 10, 2)->nullable();
+            $table->decimal('saldo_calculado_en_moneda_original', 10, 2)->default(0);
 
             $table->decimal('precio_en_dolares', 10, 2)->nullable();
             $table->decimal('monto_en_dolares', 10, 2)->nullable();

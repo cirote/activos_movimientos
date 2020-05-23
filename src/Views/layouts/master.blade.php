@@ -1,2 +1,1 @@
-@extends('layout::master')
-
+@extends('activos::layouts.master')
