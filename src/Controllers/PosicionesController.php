@@ -13,16 +13,22 @@ class PosicionesController extends Controller
     	dd(Posicion::all());
     }
 
+    public function resumen()
+    {
+        return view('movimientos::posiciones.resumen')
+            ->withPosiciones(Posicion::abiertas()->resumir()->paginate(10));
+    }
+
 	public function abiertas()
     {
         return view('movimientos::posiciones.abiertas')
-        	->withPosiciones(Posicion::orderBy('fecha_apertura')->where('estado', 'Abierta')->paginate(10));
+        	->withPosiciones(Posicion::abiertas()->ordenadas()->paginate(10));
     }
 
 	public function cerradas()
     {
         return view('movimientos::posiciones.cerradas')
-            ->withPosiciones(Posicion::orderBy('fecha_apertura')->where('estado', 'Cerrada')->paginate(10));
+            ->withPosiciones(Posicion::cerradas()->ordenadas()->paginate(10));
     }
 
 	public function prueba()

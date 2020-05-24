@@ -6,6 +6,7 @@ Route::middleware(['web'])->namespace('Cirote\Movimientos\Controllers')
 	->group(function() 
 	{
 		Route::get('/', 'PosicionesController@index')->name('index');
+		Route::get('/resumen', 'PosicionesController@resumen')->name('resumen');
 		Route::get('/abiertas', 'PosicionesController@abiertas')->name('abiertas');
 		Route::get('/cerradas', 'PosicionesController@cerradas')->name('cerradas');
 	});

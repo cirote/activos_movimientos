@@ -68,4 +68,10 @@ class Posicion extends Model
     {
         $query->orderBy('fecha_apertura');
     }
+
+    public function scopeResumir($query)
+    {
+        $query->selectRaw('activo_id, sum(cantidad) as cantidad, sum(cantidad * precio_en_dolares) as precioXcantidad, max(tipo) as tipo, max(precio_en_dolares) as mayor_precio_en_dolares, min(precio_en_dolares) as menor_precio_en_dolares, sum(monto_en_dolares) as monto_total_en_dolares')
+            ->groupBy('activo_id');
+    }
 }

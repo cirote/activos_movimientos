@@ -1,4 +1,9 @@
 <li class="header">POSICIONES</li>
+<li class="{{ Request::routeIs('posiciones.resumen') ? "active" : "" }}">
+    <a href="{{ route('posiciones.resumen', [], false) }}">
+        <i class="fa fa-table"></i> <span>Cuadro resumen</span>
+    </a>
+</li>
 <li class="{{ Request::routeIs('posiciones.abiertas') ? "active" : "" }}">
     <a href="{{ route('posiciones.abiertas', [], false) }}">
         <i class="fa fa-eye"></i> <span>Posiciones abiertas</span>
