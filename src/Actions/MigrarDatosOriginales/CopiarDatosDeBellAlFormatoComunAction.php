@@ -11,6 +11,8 @@ use App\Models\Broker;
 
 class CopiarDatosDeBellAlFormatoComunAction extends Base 
 {
+    protected $darVuelta = true;
+
 	protected $broker = 'BELL';
 
     protected $archivos = ['Hasta 2019.xlsx', 'Pesos 2020.xlsx', 'Dolar 2020.xlsx'];
@@ -59,6 +61,7 @@ class CopiarDatosDeBellAlFormatoComunAction extends Base
             'CEDEAR PETROLEO BRASILEIRO'            => 'PBR',
             'DICA BONO DISCOUNT U$S 8,28% 2033'     => 'DICA',
             'DICY BONO DISCOUNT U$S 8,28% 2033'     => 'DICY',
+            'GRUPO FIN.GALICIA'                     => 'GGAL',
             'GRUPO SUPERVIELLE ACC.ORD. "B" 1'      => 'SUPV',
             'PHOENIX GLOBAL RESOURCES PLC. ORD SHS' => 'PGR',
             'TERNIUM ARG S.A.ORDS. A 1 VOTO ESC'    => 'TXAR',

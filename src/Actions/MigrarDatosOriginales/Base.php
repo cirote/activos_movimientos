@@ -37,6 +37,8 @@ class Base
         $this->cargarDatos();
     }
 
+    protected $darVuelta = false;
+
     protected $peso;
 
     protected $dolar;
@@ -93,6 +95,11 @@ class Base
         foreach ($planillas as $planilla)
         {
             $datos = $libro->getSheetByName($planilla)->toArray(null, true, true, true);
+
+            if ($this->darVuelta)
+            {
+                $datos = array_reverse($datos, true);
+            }
 
             foreach ($datos as $dato)
             {

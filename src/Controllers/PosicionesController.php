@@ -5,6 +5,8 @@ namespace Cirote\Movimientos\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Cirote\Movimientos\Models\Posicion;
+use Cirote\Activos\Models\Activo;
+use App\Models\Broker;
 
 class PosicionesController extends Controller
 {
@@ -19,16 +21,24 @@ class PosicionesController extends Controller
             ->withPosiciones(Posicion::abiertas()->resumir()->paginate(10));
     }
 
-	public function abiertas()
+	public function abiertas(Activo $activo = null, Broker $broker = null)
     {
+        $posiciones = Posicion::with(['activo', 'broker'])->abiertas()->byApertura();
+
+        if ($activo)
+            $posiciones->byActivo($activo);
+
+        if ($broker)
+            $posiciones->byBroker($broker);
+
         return view('movimientos::posiciones.abiertas')
-        	->withPosiciones(Posicion::abiertas()->ordenadas()->paginate(10));
+        	->withPosiciones($posiciones->paginate(10));
     }
 
 	public function cerradas()
     {
         return view('movimientos::posiciones.cerradas')
-            ->withPosiciones(Posicion::cerradas()->ordenadas()->paginate(10));
+            ->withPosiciones(Posicion::cerradas()->byCierre()->paginate(10));
     }
 
 	public function prueba()

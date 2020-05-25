@@ -32,7 +32,11 @@
 						@foreach($posiciones as $posicion)
 						<tr>
 							<td>{{ $posiciones->firstItem() + $loop->index }}.</td>
-							<td>{{ $posicion->activo->ticker->ticker }}</td>
+							<td>
+								<a href="{{ route('posiciones.abiertas', ['activo' => $posicion->activo]) }}">
+									{{ $posicion->activo->ticker->ticker }}
+								</a>
+							</td>
 							<td align="right">{{  number_format($posicion->cantidad, 0, ',', '.') }}</td>
 							<td>{{ $posicion->tipo }}</td>
 							<td align="right">{{ number_format($posicion->menor_precio_en_dolares, 2, ',', '.') }}</td>

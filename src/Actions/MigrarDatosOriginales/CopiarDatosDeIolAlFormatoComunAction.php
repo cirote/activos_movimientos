@@ -11,6 +11,8 @@ use App\Models\Broker;
 
 class CopiarDatosDeIolAlFormatoComunAction extends Base 
 {
+    protected $darVuelta = true;
+
 	protected $broker = 'IOL';
 
     protected $archivos = ['MovimientosHistoricos.xlsx', 'Movimientos 2020.xlsx'];

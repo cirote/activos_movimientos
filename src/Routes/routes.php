@@ -7,6 +7,6 @@ Route::middleware(['web'])->namespace('Cirote\Movimientos\Controllers')
 	{
 		Route::get('/', 'PosicionesController@index')->name('index');
 		Route::get('/resumen', 'PosicionesController@resumen')->name('resumen');
-		Route::get('/abiertas', 'PosicionesController@abiertas')->name('abiertas');
+		Route::get('/abiertas/{activo?}/{broker?}', 'PosicionesController@abiertas')->name('abiertas');
 		Route::get('/cerradas', 'PosicionesController@cerradas')->name('cerradas');
 	});

@@ -16,14 +16,23 @@ class ImputarMovimientosOriginalesEnPosiciones
 {
 	public function execute()
     {
-    	foreach(Movimiento::with('activo', 'broker')->whereNotNull('activo_id')->where('broker_id', 2)->orderBy('fecha_operacion')->get() as $movimiento)
+    	foreach(Movimiento::with('activo', 'broker')->whereNotNull('activo_id')->orderBy('fecha_operacion')->get() as $movimiento)
     	{
     		if ($movimiento->tipo_operacion == 'Compra')
     		{
-    			if (! $this->posicionesCortas($movimiento->activo, $movimiento->broker)->count())
-    			{
-    				$this->crearPosicion($movimiento);
-    			}
+                while ($movimiento->remanente)
+                {
+                    if ($posicion_a_cerrar = $this->posicionesCortas($movimiento->activo, $movimiento->broker)->first())
+                    {
+                        $this->cerrarPosicion($posicion_a_cerrar, $movimiento);
+
+                    } else {
+    
+                        $this->crearPosicion($movimiento);
+                    }
+
+                    $movimiento->refresh();
+                } 
 
     			echo $movimiento->id . ' - ' . $movimiento->cantidad . ' => ' . $this->posicionesCortas($movimiento->activo, $movimiento->broker)->count() . ' => ' . $this->posicionesLargas($movimiento->activo, $movimiento->broker)->count() . "\n";
     		}

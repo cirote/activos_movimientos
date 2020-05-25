@@ -64,9 +64,14 @@ class Posicion extends Model
         $query->where('broker_id', $broker->id);
     }
 
-    public function scopeOrdenadas($query)
+    public function scopeByApertura($query)
     {
         $query->orderBy('fecha_apertura');
+    }
+
+    public function scopeByCierre($query)
+    {
+        $query->orderBy('fecha_cierre');
     }
 
     public function scopeResumir($query)
