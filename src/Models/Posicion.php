@@ -36,47 +36,47 @@ class Posicion extends Model
 
     public function scopeAbiertas($query)
     {
-        $query->where('estado', 'Abierta');
+        return $query->where('estado', 'Abierta');
     }
 
     public function scopeCerradas($query)
     {
-        $query->where('estado', 'Cerrada');
+        return $query->where('estado', 'Cerrada');
     }
 
     public function scopeCortas($query)
     {
-        $query->where('tipo', 'Corta');
+        return $query->where('tipo', 'Corta');
     }
 
     public function scopeLargas($query)
     {
-        $query->where('tipo', 'Larga');
+        return $query->where('tipo', 'Larga');
     }
 
     public function scopeByActivo($query, Activo $activo)
     {
-        $query->where('activo_id', $activo->id);
+        return $query->where('activo_id', $activo->id);
     }
 
     public function scopeByBroker($query, Broker $broker)
     {
-        $query->where('broker_id', $broker->id);
+        return $query->where('broker_id', $broker->id);
     }
 
     public function scopeByApertura($query)
     {
-        $query->orderBy('fecha_apertura');
+        return $query->orderBy('fecha_apertura');
     }
 
     public function scopeByCierre($query)
     {
-        $query->orderBy('fecha_cierre');
+        return $query->orderBy('fecha_cierre');
     }
 
     public function scopeResumir($query)
     {
-        $query->selectRaw('activo_id, sum(cantidad) as cantidad, sum(cantidad * precio_en_dolares) as precioXcantidad, max(tipo) as tipo, max(precio_en_dolares) as mayor_precio_en_dolares, min(precio_en_dolares) as menor_precio_en_dolares, sum(monto_en_dolares) as monto_total_en_dolares')
+        return $query->selectRaw('activo_id, sum(cantidad) as cantidad, sum(cantidad * precio_en_dolares) as precioXcantidad, max(tipo) as tipo, max(precio_en_dolares) as mayor_precio_en_dolares, min(precio_en_dolares) as menor_precio_en_dolares, sum(monto_en_dolares) as monto_total_en_dolares')
             ->groupBy('activo_id');
     }
 }

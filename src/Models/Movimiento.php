@@ -32,4 +32,15 @@ class Movimiento extends Model
     {
     	return $this->cantidad - $this->cantidad_imputada;
     }
+
+    public function scopeDeFondos($query)
+    {
+        return $query->where('tipo_operacion', 'Deposito')->orWhere('tipo_operacion', 'Extraccion');
+    }
+
+    public function scopeResumir($query)
+    {
+        return $query->selectRaw('broker_id, sum(IF(`tipo_operacion` = "Deposito", `monto_en_pesos`, 0)) as suma_de_depositos_en_pesos, sum(IF(`tipo_operacion` = "Extraccion", `monto_en_pesos`, 0)) as suma_de_extracciones_en_pesos, sum(IF(`tipo_operacion` = "Deposito", `monto_en_dolares`, 0)) as suma_de_depositos_en_dolares, sum(IF(`tipo_operacion` = "Extraccion", `monto_en_dolares`, 0)) as suma_de_extracciones_en_dolares')
+            ->groupBy(['broker_id']);
+    }
 }
