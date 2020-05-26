@@ -60,12 +60,12 @@ class ImputarMovimientosOriginalesEnPosiciones
 
     private function posicionesCortas(Activo $activo, Broker $broker)
     {
-    	return Posicion::cortas()->abiertas()->byActivo($activo)->byBroker($broker)->ordenadas();
+    	return Posicion::cortas()->abiertas()->byActivo($activo)->byBroker($broker)->byApertura();
     }
 
     private function posicionesLargas(Activo $activo, Broker $broker)
     {
-        return Posicion::largas()->abiertas()->byActivo($activo)->byBroker($broker)->ordenadas();
+        return Posicion::largas()->abiertas()->byActivo($activo)->byBroker($broker)->byApertura();
     }
 
     private function crearPosicion(Movimiento $movimiento, $cantidad_solicitada = 0)
@@ -214,6 +214,8 @@ class ImputarMovimientosOriginalesEnPosiciones
             $ponderador = $posicion->cantidad / $movimiento->cantidad;
 
             $posicion->fecha_cierre = $movimiento->fecha_operacion;
+
+            $posicion->precio_de_cierre_en_dolares = $movimiento->precio_en_dolares;
 
             $posicion->estado = 'Cerrada';
 

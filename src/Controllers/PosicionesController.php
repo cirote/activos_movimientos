@@ -15,9 +15,9 @@ class PosicionesController extends Controller
     	dd(Posicion::all());
     }
 
-    public function resumen()
+    public function resumenAbiertas()
     {
-        return view('movimientos::posiciones.resumen')
+        return view('movimientos::posiciones.resumenAbiertas')
             ->withPosiciones(Posicion::with(['activo.ticker', 'broker'])->abiertas()->resumir()->paginate(10));
     }
 
@@ -35,10 +35,24 @@ class PosicionesController extends Controller
         	->withPosiciones($posiciones->paginate(10));
     }
 
-	public function cerradas()
+    public function resumenCerradas()
     {
+        return view('movimientos::posiciones.resumenCerradas')
+            ->withPosiciones(Posicion::with(['activo.ticker', 'broker'])->cerradas()->resumir()->orderByDesc('monto_total_en_dolares')->paginate(10));
+    }
+
+	public function cerradas(Activo $activo = null, Broker $broker = null)
+    {
+        $posiciones = Posicion::with(['activo.ticker', 'broker'])->cerradas()->byCierre();
+
+        if ($activo)
+            $posiciones->byActivo($activo);
+
+        if ($broker)
+            $posiciones->byBroker($broker);
+
         return view('movimientos::posiciones.cerradas')
-            ->withPosiciones(Posicion::with(['activo.ticker', 'broker'])->cerradas()->byCierre()->paginate(10));
+            ->withPosiciones($posiciones->paginate(10));
     }
 
 	public function prueba()

@@ -2,11 +2,11 @@
 
 @section('main_content')
 <div class="row">
-	<div class="col-md-6">
+	<div class="col-md-7">
 		<div class="box">
 
 			<div class="box-header with-border">
-				<h3 class="box-title">Resumen de Posiciones abiertas</h3>
+				<h3 class="box-title">Resumen de posiciones abiertas</h3>
 			</div>
 
 			<div class="box-body">
@@ -19,7 +19,7 @@
 							<th rowspan="2">Tipo</th>
 							<th colspan="4">Precios en dólares</th>
 							<th colspan="2">Monto</th>
-							<th rowspan="2">Resultado</th>
+							<th colspan="2">Resultado</th>
 						</tr>
 						<tr>
 							<th>Minimo</th>
@@ -28,6 +28,8 @@
 							<th>Actual</th>
 							<th>Invertido</th>
 							<th>Actual</th>
+							<th>Dólares</th>
+							<th>%</th>
 						</tr>
 						@foreach($posiciones as $posicion)
 						<tr>
@@ -42,10 +44,26 @@
 							<td align="right">{{ number_format($posicion->menor_precio_en_dolares, 2, ',', '.') }}</td>
 							<td align="right">{{ number_format(($posicion->precioXcantidad / $posicion->cantidad), 2, ',', '.') }}</td>
 							<td align="right">{{ number_format($posicion->mayor_precio_en_dolares, 2, ',', '.') }}</td>
-							<td></td>
+							@if($posicion->activo->precioActualDolares)
+								<td align="right">{{ number_format($posicion->activo->precioActualDolares, 2, ',', '.') }}</td>
+							@else
+								<td></td>
+							@endif
 							<td align="right">{{ number_format($posicion->monto_total_en_dolares, 2, ',', '.') }}</td>
-							<td></td>
-							<td></td>
+							@if($valor = $posicion->activo->precioActualDolares * $posicion->cantidad)
+								<td align="right">{{ number_format($valor, 2, ',', '.') }}</td>
+								@php($resultado = $valor - $posicion->monto_total_en_dolares)
+								<td align="right">{{ number_format($resultado, 2, ',', '.') }}</td>
+								@if($resultado > 0)
+									<td align="right" style="color:green">{{ number_format($resultado * 100 / $posicion->monto_total_en_dolares, 2, ',', '.') }}</td>
+								@else
+									<td align="right" style="color:red">{{ number_format($resultado * 100 / $posicion->monto_total_en_dolares, 2, ',', '.') }}</td>
+								@endif
+							@else
+								<td></td>
+								<td></td>
+								<td></td>
+							@endif
 						</tr>
 						@endforeach
 					</tbody>

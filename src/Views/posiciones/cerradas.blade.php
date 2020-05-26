@@ -2,7 +2,7 @@
 
 @section('main_content')
 <div class="row">
-	<div class="col-md-8">
+	<div class="col-md-9">
 		<div class="box">
 
 			<div class="box-header with-border">
@@ -28,7 +28,8 @@
 							<th>Monto</th>
 							<th>Resultado</th>
 							<th>%</th>
-							<th>Precio</th>
+							<th>Apertura</th>
+							<th>Cierre</th>
 							<th>Monto</th>
 							<th>Resultado</th>
 							<th>%</th>
@@ -40,13 +41,14 @@
 							<td>{{ $posicion->fecha_cierre->format('d/m/Y') }}</td>
 							<td>{{ $posicion->broker->sigla }}</td>
 							<td>{{ $posicion->activo->ticker->ticker }}</td>
-							<td align="right">{{ $posicion->cantidad }}</td>
+							<td align="right">{{ number_format($posicion->cantidad, 2, ',', '.') }}</td>
 							<td>{{ $posicion->tipo }}</td>
 							<td align="right">{{ number_format($posicion->precio_en_pesos, 2, ',', '.') }}</td>
 							<td align="right">{{ number_format($posicion->monto_en_pesos, 2, ',', '.') }}</td>
 							<td align="right">{{ number_format($posicion->resultado_en_pesos, 2, ',', '.') }}</td>
 							<td align="right">{{ number_format(($posicion->resultado_en_pesos / $posicion->monto_en_pesos) * 100, 2, ',', '.') }} %</td>
 							<td align="right">{{ number_format($posicion->precio_en_dolares, 2, ',', '.') }}</td>
+							<td align="right">{{ number_format($posicion->precio_de_cierre_en_dolares, 2, ',', '.') }}</td>
 							<td align="right">{{ number_format($posicion->monto_en_dolares, 2, ',', '.') }}</td>
 							<td align="right">{{ number_format($posicion->resultado_en_dolares, 2, ',', '.') }}</td>
 							<td align="right">{{ number_format(($posicion->resultado_en_dolares / $posicion->monto_en_dolares) * 100, 2, ',', '.') }} %</td>

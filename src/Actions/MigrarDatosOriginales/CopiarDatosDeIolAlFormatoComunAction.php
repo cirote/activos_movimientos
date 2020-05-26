@@ -15,7 +15,7 @@ class CopiarDatosDeIolAlFormatoComunAction extends Base
 
 	protected $broker = 'IOL';
 
-    protected $archivos = ['MovimientosHistoricos.xlsx', 'Movimientos 2020.xlsx'];
+    protected $archivos = ['MovimientosHistoricos.xlsx', 'Pesos hasta Mayo 2020.xlsx', 'Dolares hasta Mayo 2020.xlsx'];
 
     protected function fecha_operacion($datos): ?Carbon
     {

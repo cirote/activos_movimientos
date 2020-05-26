@@ -42,6 +42,8 @@ class CreatePosicionesTable extends Migration
             $table->decimal('monto_en_pesos', 10, 2)->default(0);
             $table->decimal('resultado_en_pesos', 10, 2)->nullable()->default(null);
 
+            $table->decimal('precio_de_cierre_en_dolares', 10, 2)->nullable()->default(null);
+
             $table->timestamps();
         });
     }

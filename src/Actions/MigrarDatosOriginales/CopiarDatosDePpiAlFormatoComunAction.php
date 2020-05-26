@@ -89,7 +89,17 @@ class CopiarDatosDePpiAlFormatoComunAction extends Base
 
     protected function precio_en_moneda_original($datos): ?float
     {
-    	return $this->toFloat($datos['D']) ?: null;
+        $valor = $this->toFloat($datos['D']);
+
+        if ($activo = $this->activo($datos))
+        {   
+            if ($activo->clase == 'Bono')
+            {
+                return $valor ? $valor * 100 : null;
+            }
+        }
+
+    	return $valor;
     }
 
     protected function monto_en_moneda_original($datos): ?float
