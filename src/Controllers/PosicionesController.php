@@ -18,7 +18,7 @@ class PosicionesController extends Controller
     public function resumenAbiertas()
     {
         return view('movimientos::posiciones.resumenAbiertas')
-            ->withPosiciones(Posicion::with(['activo.ticker', 'broker'])->abiertas()->resumir()->paginate(10));
+            ->withPosiciones(Posicion::with(['activo.ticker', 'broker'])->abiertas()->resumir()->orderByDesc('monto_total_en_dolares')->paginate(10));
     }
 
 	public function abiertas(Activo $activo = null, Broker $broker = null)
