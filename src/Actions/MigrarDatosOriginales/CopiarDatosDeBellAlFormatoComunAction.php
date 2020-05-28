@@ -89,7 +89,7 @@ class CopiarDatosDeBellAlFormatoComunAction extends Base
     {
         return [
             'COBR' => static::OP_DEPOSITO,
-            'oooo' => static::OP_RETIRO,
+            'PAU$' => static::OP_RETIRO,
             'CPRA' => static::OP_COMPRA,
             'CPU$' => static::OP_COMPRA,
             'SUSC' => static::OP_COMPRA,

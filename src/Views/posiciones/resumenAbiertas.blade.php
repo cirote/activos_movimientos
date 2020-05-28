@@ -31,6 +31,7 @@
 							<th>Dólares</th>
 							<th>%</th>
 						</tr>
+						@php($suma = 0)
 						@foreach($posiciones as $posicion)
 						<tr>
 							<td>{{ $posiciones->firstItem() + $loop->index }}.</td>
@@ -51,6 +52,7 @@
 							@endif
 							<td align="right">{{ number_format($posicion->monto_total_en_dolares, 2, ',', '.') }}</td>
 							@if($valor = $posicion->activo->precioActualDolares * $posicion->cantidad)
+								@php($suma += $valor)
 								<td align="right">{{ number_format($valor, 2, ',', '.') }}</td>
 								@php($resultado = $valor - $posicion->monto_total_en_dolares)
 								<td align="right">{{ number_format($resultado, 2, ',', '.') }}</td>
@@ -66,6 +68,20 @@
 							@endif
 						</tr>
 						@endforeach
+						<tr>
+							<td></td>
+							<td colspan="7"><b>Valor actual</b></td>
+							<td align="right">{{ number_format($valorActual, 2, ',', '.') }}</td>
+							<td align="right">{{ number_format($suma, 2, ',', '.') }}</td>
+							@php($resultado = $suma - $valorActual)
+							@if($resultado > 0)
+								<td align="right" style="color:green">{{ number_format($resultado , 2, ',', '.') }}</td>
+								<td align="right" style="color:green">{{ number_format($resultado * 100 / $valorActual, 2, ',', '.') }}</td>
+							@else
+								<td align="right" style="color:red">{{ number_format($resultado , 2, ',', '.') }}</td>
+								<td align="right" style="color:red">{{ number_format($resultado * 100 / $valorActual, 2, ',', '.') }}</td>
+							@endif
+						</tr>
 					</tbody>
 				</table>
 			</div>
