@@ -71,15 +71,15 @@
 						<tr>
 							<td></td>
 							<td colspan="7"><b>Valor actual</b></td>
-							<td align="right">{{ number_format($valorActual, 2, ',', '.') }}</td>
+							<td align="right">{{ number_format($inversionRealizada, 2, ',', '.') }}</td>
 							<td align="right">{{ number_format($suma, 2, ',', '.') }}</td>
-							@php($resultado = $suma - $valorActual)
+							@php($resultado = $suma - $inversionRealizada)
 							@if($resultado > 0)
 								<td align="right" style="color:green">{{ number_format($resultado , 2, ',', '.') }}</td>
-								<td align="right" style="color:green">{{ number_format($resultado * 100 / $valorActual, 2, ',', '.') }}</td>
+								<td align="right" style="color:green">{{ number_format($resultado * 100 / $inversionRealizada, 2, ',', '.') }}</td>
 							@else
 								<td align="right" style="color:red">{{ number_format($resultado , 2, ',', '.') }}</td>
-								<td align="right" style="color:red">{{ number_format($resultado * 100 / $valorActual, 2, ',', '.') }}</td>
+								<td align="right" style="color:red">{{ number_format($resultado * 100 / $inversionRealizada, 2, ',', '.') }}</td>
 							@endif
 						</tr>
 					</tbody>
