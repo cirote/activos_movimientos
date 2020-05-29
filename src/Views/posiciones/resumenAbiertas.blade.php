@@ -62,7 +62,7 @@
 									<td align="right" style="color:red">{{ number_format($resultado * 100 / $posicion->monto_total_en_dolares, 2, ',', '.') }}</td>
 								@endif
 							@else
-								<td></td>
+								<td>{{ $posicion->activo->precioActualDolares }}</td>
 								<td></td>
 								<td></td>
 							@endif

@@ -20,7 +20,7 @@ class PosicionesController extends Controller
     {
         return view('movimientos::posiciones.resumenAbiertas')
             ->withInversionRealizada(Posicion::abiertas()->selectRaw('sum(monto_en_dolares) as total_en_dolares')->first()->total_en_dolares)
-            ->withPosiciones(Posicion::with(['activo.ticker', 'broker'])->abiertas()->resumir()->orderByDesc('monto_total_en_dolares')->paginate(10));
+            ->withPosiciones(Posicion::with(['activo.tickers', 'activo.precio', 'broker'])->abiertas()->resumir()->orderByDesc('monto_total_en_dolares')->paginate(10));
     }
 
 	public function abiertas(Activo $activo = null, Broker $broker = null)

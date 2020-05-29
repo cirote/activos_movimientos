@@ -10,7 +10,6 @@ use Cirote\Activos\Models\Broker;
 use Cirote\Movimientos\Models\Movimiento;
 use Cirote\Movimientos\Models\Posicion;
 
-
 class ImputarMovimientosOriginalesEnPosicionesAction
 {
 	public function execute()
