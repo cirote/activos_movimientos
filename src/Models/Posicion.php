@@ -5,7 +5,7 @@ namespace Cirote\Movimientos\Models;
 use Illuminate\Database\Eloquent\Model;
 use Cirote\Activos\Config\Config;
 use Cirote\Activos\Models\Activo;
-use App\Models\Broker;
+use Cirote\Activos\Models\Broker;
 
 class Posicion extends Model
 {
@@ -71,7 +71,7 @@ class Posicion extends Model
 
     public function scopeByCierre($query)
     {
-        return $query->orderBy('fecha_cierre');
+        return $query->orderByDesc('fecha_cierre');
     }
 
     public function scopeResumir($query)

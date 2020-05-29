@@ -4,10 +4,10 @@ namespace Cirote\Movimientos\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Cirote\Activos\Models\Activo;
+use Cirote\Activos\Models\Broker;
 use Cirote\Movimientos\Actions\CalcularValorActualDeLasPosicionesAbiertasAction as valorActual;
 use Cirote\Movimientos\Models\Posicion;
-use Cirote\Activos\Models\Activo;
-use App\Models\Broker;
 
 class PosicionesController extends Controller
 {

@@ -5,7 +5,7 @@ namespace Cirote\Movimientos\Models;
 use Illuminate\Database\Eloquent\Model;
 use Cirote\Activos\Config\Config;
 use Cirote\Activos\Models\Activo;
-use App\Models\Broker;
+use Cirote\Activos\Models\Broker;
 
 class Movimiento extends Model
 {

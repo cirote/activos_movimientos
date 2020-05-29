@@ -7,8 +7,8 @@ use Illuminate\Support\Carbon;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Cirote\Activos\Models\Activo;
 use Cirote\Activos\Models\Moneda;
+use Cirote\Activos\Models\Broker;
 use Cirote\Movimientos\Models\Movimiento;
-use App\Models\Broker;
 
 class Base 
 {

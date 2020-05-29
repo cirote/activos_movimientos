@@ -6,8 +6,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Cirote\Activos\Models\Activo;
-
-use App\Models\Broker;
+use Cirote\Activos\Models\Broker;
 
 class CopiarDatosDePpiAlFormatoComunAction extends Base 
 {
