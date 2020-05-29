@@ -25,7 +25,7 @@ class PosicionesController extends Controller
 
 	public function abiertas(Activo $activo = null, Broker $broker = null)
     {
-        $posiciones = Posicion::with(['activo.ticker', 'broker'])->abiertas()->byApertura();
+        $posiciones = Posicion::with(['activo.tickers', 'broker'])->abiertas()->byApertura();
 
         if ($activo)
             $posiciones->byActivo($activo);
@@ -40,12 +40,12 @@ class PosicionesController extends Controller
     public function resumenCerradas()
     {
         return view('movimientos::posiciones.resumenCerradas')
-            ->withPosiciones(Posicion::with(['activo.ticker', 'broker'])->cerradas()->resumir()->orderByDesc('monto_total_en_dolares')->paginate(10));
+            ->withPosiciones(Posicion::with(['activo.tickers', 'broker'])->cerradas()->resumir()->orderByDesc('monto_total_en_dolares')->paginate(10));
     }
 
 	public function cerradas(Activo $activo = null, Broker $broker = null)
     {
-        $posiciones = Posicion::with(['activo.ticker', 'broker'])->cerradas()->byCierre();
+        $posiciones = Posicion::with(['activo.tickers', 'broker'])->cerradas()->byCierre();
 
         if ($activo)
             $posiciones->byActivo($activo);
